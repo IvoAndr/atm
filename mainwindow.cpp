@@ -146,10 +146,10 @@ void MainWindow::loadBanknotes()
 void MainWindow::clearAll(QString infoText)
 {
     ui->infoText->setText(infoText);
-    ui->gived10->setText(QString::number(0));
-    ui->gived20->setText(QString::number(0));
-    ui->gived50->setText(QString::number(0));
-    ui->gived100->setText(QString::number(0));
+    ui->gived10->setText("0");
+    ui->gived20->setText("0");
+    ui->gived50->setText("0");
+    ui->gived100->setText("0");
     ui->display->display(0);
     displayIndex = 0;
     displayString = "0";
