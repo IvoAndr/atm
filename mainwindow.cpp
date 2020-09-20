@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
     setFixedSize(width(), height());
     setWindowTitle("ATM");
     QPalette lcdPalete;
@@ -90,7 +89,7 @@ void MainWindow::on_buttWithdraw_clicked()
     int currentValue = ui->display->value();
 
     if (currentValue < 10) {
-        ui->infoText->setText("Min withdraw: 10lv.!");
+        ui->infoText->setText("Min withdraw: 10lv.! Click CANCEL to clear.");
         ui->display->display(10);
         return;
     }
@@ -98,7 +97,7 @@ void MainWindow::on_buttWithdraw_clicked()
     QMap<int, int> givedBanknotes = withraw->getWithdraw(banknotes, currentValue);
     
     if (givedBanknotes.isEmpty()) {
-        clearAll("ATM error!");
+        clearAll("ATM error! Click CANCEL to clear.");
     	return;
     }
 
@@ -120,14 +119,13 @@ void MainWindow::on_buttCancel_clicked()
 
 void MainWindow::showValueToDisplay(int value)
 {
-    if (displayIndex < 3) {
+	if (displayIndex >= 3 || ui->display->value() > 9990) {
+    	ui->infoText->setText("Max withdraw: 9990lv.! Click CANCEL to clear.");
+        ui->display->display(9990);
+    }
+    else {
         displayString.insert(displayString.size() - 1, QString::number(value));
         ui->display->display(displayString);
-
-        if (ui->display->value() > 9990) {
-            ui->infoText->setText("Max withdraw: 9990lv.!");
-            ui->display->display(9990);
-        }
     }
 
     displayIndex++;
