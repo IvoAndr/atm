@@ -119,7 +119,7 @@ void MainWindow::on_buttCancel_clicked()
 
 void MainWindow::showValueToDisplay(int value)
 {
-	if (displayIndex >= 3 || ui->display->value() > 9990) {
+    if (displayIndex >= 3 || ui->display->value() > 9990) {
     	ui->infoText->setText("Max withdraw: 9990lv.! Click CANCEL to clear.");
         ui->display->display(9990);
     }
