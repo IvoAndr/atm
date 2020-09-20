@@ -53,7 +53,7 @@ private:
     void loadBanknotes();
     int displayIndex;
     QString displayString;
-    Withdraw *withraw;
+    Withdraw *withdraw;
     void clearAll(QString infoText);
 };
 #endif // MAINWINDOW_H

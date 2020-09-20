@@ -23,14 +23,14 @@ MainWindow::MainWindow(QWidget *parent)
     banknotes = new Banknotes();
     loadBanknotes();
     ui->load10->setFocus();
-    withraw = new Withdraw();
+    withdraw = new Withdraw();
     displayString = "0";
 }
 
 MainWindow::~MainWindow()
 {
     delete banknotes;
-    delete withraw;
+    delete withdraw;
     delete ui;
 }
 
@@ -94,7 +94,7 @@ void MainWindow::on_buttWithdraw_clicked()
         return;
     }
 
-    QMap<int, int> givedBanknotes = withraw->getWithdraw(banknotes, currentValue);
+    QMap<int, int> givedBanknotes = withdraw->getWithdraw(banknotes, currentValue);
     
     if (givedBanknotes.isEmpty()) {
         clearAll("ATM error! Click CANCEL to clear.");
@@ -119,7 +119,7 @@ void MainWindow::on_buttCancel_clicked()
 
 void MainWindow::showValueToDisplay(int value)
 {
-    if (displayIndex >= 3 || ui->display->value() > 9990) {
+	if (displayIndex >= 3 || ui->display->value() > 9990) {
     	ui->infoText->setText("Max withdraw: 9990lv.! Click CANCEL to clear.");
         ui->display->display(9990);
     }
